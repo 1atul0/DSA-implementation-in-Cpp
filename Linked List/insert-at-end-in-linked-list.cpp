@@ -9,14 +9,18 @@ struct Node{
     }
 };
 //insert element at begin 
-Node* insert_at_begining(Node* root,int x){
-    Node* curr=new Node(x);
-     if(root==NULL)
+Node* insert_at_end(Node* root,int x){
+    Node* end=new Node(x);
+    if(root==NULL)
         {
-            return curr;
+            return end;
         }
-    curr->next=root;
-    return curr;
+    Node* curr=root;
+    while(curr->next!=NULL){
+        curr=curr->next;
+    }
+    curr->next=end;
+    return root;
 }
 
 //traverse whole node of linked list
@@ -28,6 +32,7 @@ void traverse(Node* head){
         }
 }
 
+
 int main(){
     Node* head=new Node(1);
     Node* curr=head;
@@ -35,7 +40,7 @@ int main(){
         curr->next=new Node(i);
         curr=curr->next;
     }
-    Node* res=insert_at_begining(head,15);
+    Node* res=insert_at_end(head,15);
     traverse(res);
     return 0;
 }

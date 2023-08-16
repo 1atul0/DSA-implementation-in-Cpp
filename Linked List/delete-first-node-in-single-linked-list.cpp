@@ -8,15 +8,15 @@ struct Node{
         next=NULL;
     }
 };
-//insert element at begin 
-Node* insert_at_begining(Node* root,int x){
-    Node* curr=new Node(x);
-     if(root==NULL)
-        {
-            return curr;
-        }
-    curr->next=root;
-    return curr;
+//delete first node 
+Node* delete_first_node(Node* root){
+    if(root==NULL){
+        return NULL;
+    }
+    Node* curr=root;
+    root=root->next;
+    delete curr;
+    return root;
 }
 
 //traverse whole node of linked list
@@ -35,7 +35,7 @@ int main(){
         curr->next=new Node(i);
         curr=curr->next;
     }
-    Node* res=insert_at_begining(head,15);
+    Node* res=delete_first_node(head);
     traverse(res);
     return 0;
 }
