@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 struct Node
 {
@@ -10,25 +10,16 @@ struct Node
         next = NULL;
     }
 };
-// delete first node
-Node* insert_at_given_position(Node *root,int pos,int data)
-{   
-   if(root==NULL)
-   return root;
-   if(pos==1){
-    Node* temp=new Node(data);
-    temp->next=root;
-    return temp;
-   }
-   Node* curr=root;
-  for(int i=2;i<pos;i++){
-    curr=curr->next;
-    if(curr==NULL)return root;
-  }
-  Node* temp=new Node(data);
-  temp->next=curr->next;
-  curr->next=temp;
-  return root;
+
+int middle_of_list(Node* head){
+    if(head==NULL)return -1;
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow->data;
 
 }
 
@@ -54,7 +45,7 @@ int main()
         curr->next = new Node(i);
         curr = curr->next;
     }
-    Node *res = insert_at_given_position(head,11,67);
-    traverse(res);
+    cout<<middle_of_list(head)<<endl;
+    // traverse(res);
     return 0;
 }
